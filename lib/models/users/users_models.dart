@@ -1,3 +1,8 @@
+import 'package:hive/hive.dart';
+
+part 'users_models.g.dart';
+
+@HiveType(typeId: 2)
 class UsersModels {
   UsersModels({
     this.id,
@@ -7,10 +12,15 @@ class UsersModels {
     this.avatar,
   });
 
+  @HiveField(0)
   int? id;
+  @HiveField(1)
   String? email;
+  @HiveField(2)
   String? firstName;
+  @HiveField(3)
   String? lastName;
+  @HiveField(4)
   String? avatar;
 
   factory UsersModels.fromJson(Map<String, dynamic> json) => UsersModels(
