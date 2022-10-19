@@ -12,6 +12,7 @@ class ListUsersServices {
   Future<ApiReturnUsers<ListUsersModels>> getDataServices(currentPage) async {
     /* String url = '$urlApi$pageUser$page=${currentPage.toString()}'; */
     String url = '${urlApi}${pageUser}${page}${currentPage}';
+    /* String url = '${urlApi}${pageUser}${page}'; */
     print(url);
     var response = await http.get(Uri.parse(url));
 
@@ -28,6 +29,7 @@ class ListUsersServices {
             value: users,
           );
         case 404:
+          print('404');
           return ApiReturnUsers(
             code: response.statusCode.toString(),
             message: response.body,
