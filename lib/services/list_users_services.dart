@@ -8,14 +8,16 @@ import 'package:hive_local_database/shared/const_api.dart';
 import 'package:http/http.dart' as http;
 
 class ListUsersServices {
+
+  
   late int totalPage;
+
+  
   Future<ApiReturnUsers<ListUsersModels>> getDataServices(currentPage) async {
     /* String url = '$urlApi$pageUser$page=${currentPage.toString()}'; */
     String url = '${urlApi}${pageUser}${page}${currentPage}';
     /* String url = '${urlApi}${pageUser}${page}'; */
-    print(url);
     var response = await http.get(Uri.parse(url));
-
     try {
       print('Mulai try');
       switch (response.statusCode) {

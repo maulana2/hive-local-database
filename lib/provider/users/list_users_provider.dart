@@ -9,7 +9,7 @@ import 'package:hive_local_database/models/handler/api_return_users.dart';
 import 'package:hive_local_database/models/users/list_users_models.dart';
 import 'package:hive_local_database/models/users/users_models.dart';
 import 'package:hive_local_database/services/list_users_services.dart';
-import 'package:hive_local_database/widgets/snackbar.dart';
+import 'package:hive_local_database/ui/widgets/snackbar.dart';
 
 class ListUsersProvider with ChangeNotifier {
   int _currentPage = 1;

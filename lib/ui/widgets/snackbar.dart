@@ -10,6 +10,5 @@ class SnackBarWidget {
       backgroundColor: color,
       duration: Duration(seconds: 5),
     );
-    ;
   }
 }

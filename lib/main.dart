@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_local_database/provider/scan_pdf/scan_pdf_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 
 import 'package:hive_local_database/models/users/users_models.dart';
-import 'package:hive_local_database/pages/main_page.dart';
+import 'package:hive_local_database/ui/pages/main_page.dart';
 import 'package:hive_local_database/provider/users/list_users_provider.dart';
 
 
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => ListUsersProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ScanPdfProvider(),
         ),
       ],
       child: MaterialApp(

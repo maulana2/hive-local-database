@@ -29,8 +29,13 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  advance_pdf_viewer: 
+    git:
+      url: https://github.com/lohanidamodar/pdf_viewer.git
+      ref: 4e5d96be29de515f1081c0b6897741b8dca84722
   connectivity_plus: ^2.3.9
   cupertino_icons: ^1.0.2
+  document_scanner_flutter: ^0.2.7
   easy_refresh: ^3.0.4+2
   flutter:
     sdk: flutter

@@ -1,10 +1,11 @@
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_local_database/ui/pages/scan_pdf.dart';
 import 'package:provider/provider.dart';
 
 import 'package:hive_local_database/models/users/users_models.dart';
 import 'package:hive_local_database/provider/users/list_users_provider.dart';
-import 'package:hive_local_database/widgets/item_users_widget.dart';
+import 'package:hive_local_database/ui/widgets/item_users_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -20,7 +21,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          child: Icon(Icons.photo_camera_outlined),
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => ScanPdfPage(),
+            ));
+          },
         ),
         appBar: AppBar(
           title: Text('Hive Database'),
@@ -38,7 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Consumer<ListUsersProvider>(
                   builder: (context, data, child) => EasyRefresh(
                     scrollController: scrollController,
-                    notLoadFooter: NotLoadFooter(),
                     onRefresh: () => data.onRefresh(context),
                     onLoad: () => data.onLoad(context),
                     child: ListView.builder(
