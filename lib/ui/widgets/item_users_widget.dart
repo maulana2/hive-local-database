@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hive_local_database/models/users/users_models.dart';
 import 'package:hive_local_database/shared/theme.dart';
+import 'package:hive_local_database/ui/pages/detail_user_page.dart';
 
 class ItemUserWidget extends StatelessWidget {
   final UsersModels user;
@@ -11,7 +12,13 @@ class ItemUserWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => DetailUserPage(user: user),
+            ),
+          );
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
