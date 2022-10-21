@@ -5,7 +5,7 @@ import 'package:hive_local_database/shared/theme.dart';
 import 'package:hive_local_database/ui/pages/detail_user_page.dart';
 
 class ItemUserWidget extends StatelessWidget {
-  final UsersModels user;
+  final UsersModels? user;
 
   const ItemUserWidget({Key? key, required this.user}) : super(key: key);
 
@@ -15,7 +15,7 @@ class ItemUserWidget extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => DetailUserPage(user: user),
+              builder: (context) => DetailUserPage(user: user!),
             ),
           );
         },
@@ -34,7 +34,7 @@ class ItemUserWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18),
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage('${user.avatar}'))),
+                      image: NetworkImage('${user?.avatar}'))),
             ),
             Expanded(
               child: IntrinsicHeight(
@@ -42,13 +42,13 @@ class ItemUserWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${user.firstName} ${user.lastName}',
+                      '${user?.firstName} ${user?.lastName}',
                       style: blackTextStyle.copyWith(
                           fontSize: 18, fontWeight: semiBold),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '${user.email}',
+                      '${user?.email}',
                       style: blackTextStyle,
                     ),
                   ],

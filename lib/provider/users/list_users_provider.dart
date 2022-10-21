@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -18,17 +19,34 @@ class ListUsersProvider with ChangeNotifier {
   late int _totalPage;
   int get totalPage => _totalPage;
 
-  List<UsersModels> _userModels = [];
+  /*  List<UsersModels> _userModels = [];
   List<UsersModels> get userModels => _userModels;
-
+ */
   bool? _refresh;
   bool? get refresh => _refresh;
 
-  late Box _box;
-  Box get box => _box;
-
+  late Box<UsersModels> _box;
+  Box<UsersModels> get box => _box;
+  
   List _data = [];
   List get data => _data;
+  String? _query = '';
+
+  changeFilterSrtring(query) {
+    _query = query;
+    if (_query!.isEmpty) {
+      notifyListeners();
+    } else {
+      UnmodifiableListView(box.values)
+          .where((element) =>
+              element.firstName!
+                  .toLowerCase()
+                  .contains(_query!.toLowerCase()) ||
+              element.lastName!.toLowerCase().contains(_query!.toLowerCase()))
+          .toList();
+      notifyListeners();
+    }
+  }
 
 //Get data users
   Future listUsers({bool? refresh}) async {
@@ -48,6 +66,7 @@ class ListUsersProvider with ChangeNotifier {
             : result.value!.data!.forEach((element) {
                 box.add(element);
               });
+        print(_box.getAt(0));
         notifyListeners();
         break;
 
@@ -72,6 +91,7 @@ class ListUsersProvider with ChangeNotifier {
         case 200:
           //memasuki data dari API ke Local DB
           await putData(_result.value!.data!);
+          print(box.values);
           notifyListeners();
           break;
 
