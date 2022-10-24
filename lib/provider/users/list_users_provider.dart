@@ -27,25 +27,20 @@ class ListUsersProvider with ChangeNotifier {
 
   late Box<UsersModels> _box;
   Box<UsersModels> get box => _box;
-  
+  List<UsersModels> get boxx => _query.isEmpty
+      ? UnmodifiableListView(_box.values).toList()
+      : UnmodifiableListView(_box.values.where((element) =>
+              element.firstName!.toLowerCase().contains(_query.toLowerCase()) ||
+              element.lastName!.toLowerCase().contains(_query.toLowerCase())))
+          .toList();
+
   List _data = [];
   List get data => _data;
-  String? _query = '';
+  String _query = '';
 
-  changeFilterSrtring(query) {
+  void changeFilterString(String query) {
     _query = query;
-    if (_query!.isEmpty) {
-      notifyListeners();
-    } else {
-      UnmodifiableListView(box.values)
-          .where((element) =>
-              element.firstName!
-                  .toLowerCase()
-                  .contains(_query!.toLowerCase()) ||
-              element.lastName!.toLowerCase().contains(_query!.toLowerCase()))
-          .toList();
-      notifyListeners();
-    }
+    notifyListeners();
   }
 
 //Get data users
